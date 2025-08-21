@@ -1,0 +1,3 @@
+# TD OpenAPI Specification - AA 2024-25 Ce dépôt contient les fichiers de travail pour le TD OpenAPI Specification de l'année académique 2024-25.
+Chaque fichier YAML décrit une API selon la spécification OpenAPI 3 (OAS3) et illustre différentes fonctionnalités et bonnes pratiques pour concevoir, documenter et structurer des API REST. 
+Les exercices incluent des API simples et avancées, la gestion de modèles et de sous-schémas, l’utilisation de paramètres, d’exemples, d’authentification, et la mise en œuvre de bonnes pratiques pour la conception d’API robustes et maintenables
