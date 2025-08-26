@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Product Search API
+  version: 1.0.0
+  description: API pour rechercher des produits
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Lait frais"
+        expiration_datetime:
+          type: string
+          format: date-time
+          example: "2025-12-31T23:59:59Z"
+        price:
+          type: number
+          format: float
+          example: 2.5
+
+  parameters:
+    LimitParam:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: Nombre maximum de produits à retourner
+      example: 5
+    QueryParam:
+      name: q
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Terme de recherche pour filtrer les produits
+      example: "lait"
+
+paths:
+  /products:
+    get:
+      summary: Recherche de produits
+      description: Retourne une liste de produits filtrée par un terme de recherche et limitée par le nombre maximum.
+      parameters:
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/QueryParam'
+      responses:
+        '200':
+          description: Liste des produits trouvés
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              examples:
+                multipleProducts:
+                  summary: Plusieurs produits
+                  value:
+                    - name: "Lait frais"
+                      expiration_datetime: "2025-12-31T23:59:59Z"
+                      price: 2.5
+                    - name: "Fromage"
+                      expiration_datetime: "2025-10-15T12:00:00Z"
+                      price: 5.0
+                emptyList:
+                  summary: Aucun produit trouvé
+                  value: []
